@@ -3,11 +3,7 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-
-  .header {
-    font-size: 35px;
-    padding: 20px;
-  }
+  position: relative;
 
   .navBar {
     display: flex;
@@ -24,6 +20,40 @@
 
     .showMods {
       display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      font-size: 0.9rem;
+
+      .list {
+        gap: 2px;
+        display: flex;
+        align-items: center;
+        color: green;
+        .icon {
+          cursor: pointer;
+        }
+      }
+
+      .grid {
+        gap: 2px;
+        display: flex;
+        align-items: center;
+        color: green;
+        .icon {
+          cursor: pointer;
+        }
+      }
+
+      .active {
+        gap: 2px;
+        display: flex;
+        align-items: center;
+        color: black;
+        font-weight: bolder;
+        .icon {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import Home from "./pages/home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ComicDetail from "./components/comicDetail/ComicDetail";
+import ComicDetail from "./pages/comicDetail/ComicDetail";
 
 function App() {
   return (

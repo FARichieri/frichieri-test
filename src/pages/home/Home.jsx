@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.scss";
 import Comics from "../../components/comics/Comics";
+import Header from "../../components/navBar/Header";
+import Footer from "../../components/footer/Footer";
+import ListIcon from "@mui/icons-material/List";
+import ViewComfyIcon from "@mui/icons-material/ViewComfy";
 
 const Home = () => {
+  const [display, setDisplay] = useState("list");
+
   return (
     <div className="home">
-      <div className="header">ComicBook</div>
+      <Header />
       <div className="navBar">
         <h5 className="latestIssues">Latest Issues</h5>
         <div className="showMods">
-          <div className="List">List</div>
-          <div className="Grid">Grid</div>
+          <div className={display === "list" ? "active" : "list"}>
+            <ListIcon onClick={() => setDisplay("list")} className={`icon`} />
+            List
+          </div>
+          <div className={display === "grid" ? "active" : "grid"}>
+            <ViewComfyIcon
+              onClick={() => setDisplay("grid")}
+              className={`icon`}
+            />
+            Grid
+          </div>
         </div>
       </div>
       <div className="comics">
-        <Comics />
+        <Comics display={display} />
       </div>
+      <Footer />
     </div>
   );
 };

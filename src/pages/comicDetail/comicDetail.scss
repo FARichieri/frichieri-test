@@ -1,0 +1,30 @@
+.comicDetail {
+  display: flex;
+  min-height: 110vh;
+  flex-direction: column;
+  position: relative;
+
+  .detailContainer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+      padding: 0 20px 0 100px;
+
+      .title {
+        border-bottom: 1px solid rgba(96, 95, 95, 0.44);
+        text-align: left;
+      }
+    }
+
+    .img {
+      display: flex;
+      flex: 1;
+      height: 550px;
+    }
+  }
+}
