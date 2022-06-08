@@ -1,0 +1,21 @@
+.comics {
+  grid-template-columns: auto auto auto auto;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  justify-content: center;
+  margin: 40px auto;
+  justify-content: space-between;
+  .comic {
+    width: 250px;
+    .img {
+      width: 250px;
+      height: 375px;
+      border: 3px solid black;
+    }
+    .dateAdded {
+      color: gray;
+    }
+  }
+}

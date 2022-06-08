@@ -1,0 +1,29 @@
+.home {
+  background-color: rgba(128, 128, 128, 0.261);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .header {
+    font-size: 35px;
+    padding: 20px;
+  }
+
+  .navBar {
+    display: flex;
+    height: 10px;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 15px 0 15px 0;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+    max-width: 1200px;
+    background-color: rgba(128, 128, 128, 0.065);
+
+    .showMods {
+      display: flex;
+    }
+  }
+}
