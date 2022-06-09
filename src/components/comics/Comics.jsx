@@ -63,21 +63,25 @@ const Comics = ({ comics }) => {
               </div>
             </div>
           </div>
-          {currentComics?.map((comic) => (
-            <div className="comic" key={comic.id}>
-              <Link to={`/${comic.id}`}>
-                <img src={comic.image.original_url} alt="" className="img" />
-              </Link>
-              <div className="info">
-                <FavoriteBtn id={comic.id} />
-                <h3 className="name">
-                  {comic.name ? comic.name : comic.volume.name} #
-                  {comic.issue_number}
-                </h3>
-                <h5 className="dateAdded">{comic.date_added}</h5>
+          {currentComics ? (
+            currentComics.map((comic) => (
+              <div className="comic" key={comic.id}>
+                <Link to={`/comic/${comic.id}`}>
+                  <img src={comic.image.original_url} alt="" className="img" />
+                </Link>
+                <div className="info">
+                  <FavoriteBtn id={comic.id} />
+                  <h3 className="name">
+                    {comic.name ? comic.name : comic.volume.name} #
+                    {comic.issue_number}
+                  </h3>
+                  <h5 className="dateAdded">{comic.date_added}</h5>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <h1>{`Nothing found :(`}</h1>
+          )}
           <div className="pagination">
             <PaginationC totalPages={totalPages} />
           </div>

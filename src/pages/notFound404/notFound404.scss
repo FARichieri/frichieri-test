@@ -1,0 +1,10 @@
+.notFound404 {
+  min-height: 100vh;
+  position: relative;
+  .imgNotFound {
+    height: 550px;
+    width: 100%;
+    box-shadow: 0 0 10px 1px black;
+    margin-bottom: 60px;
+  }
+}

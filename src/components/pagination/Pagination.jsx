@@ -8,6 +8,7 @@ import { setCurrentPage } from "../../Redux/Actions";
 
 function PaginationC({ totalPages }) {
   const location = useLocation();
+  const path = location.pathname;
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get("page") || "1", 10);
   const currentPage = useSelector((state) => state.currentPage);
@@ -36,7 +37,7 @@ function PaginationC({ totalPages }) {
         renderItem={(item) => (
           <PaginationItem
             component={Link}
-            to={`/${item.page === 1 ? "" : `?page=${item.page}`}`}
+            to={`${path}${item.page === 1 ? "" : `?page=${item.page}`}`}
             {...item}
           />
         )}

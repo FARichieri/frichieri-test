@@ -2,6 +2,7 @@ const InitialState = {
   comics: [],
   comicDetail: [],
   favorites: [],
+  currentUser: {},
   loading: false,
   currentPage: 1,
 };
@@ -55,6 +56,16 @@ function rootReducer(state = InitialState, action) {
       return {
         ...state,
         favorites: state.favorites,
+      };
+    case "LOGIN":
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        currentUser: null,
       };
     default:
       return {

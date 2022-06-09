@@ -1,7 +1,6 @@
 .header {
   font-size: 40px;
   position: relative;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.098);
   width: 100%;
   justify-content: center;
   display: flex;
@@ -19,14 +18,54 @@
     align-items: center;
     display: flex;
     justify-content: flex-end;
+    position: relative;
+
+    .logBtns {
+      height: 30px;
+      width: 30px;
+      display: flex;
+      position: absolute;
+      left: 20px;
+    }
+
+    .login {
+      border: none;
+      border-radius: 10px;
+      height: 25px;
+      width: 75px;
+      background-color: rgba(255, 0, 0, 0.524);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+      font-weight: bold;
+    }
+    .logout {
+      border: none;
+      border-radius: 10px;
+      height: 25px;
+      width: 75px;
+      background-color: blue;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+      font-weight: bold;
+    }
+    .login:hover,
+    .logout:hover {
+      opacity: 0.5;
+    }
   }
 
   .title {
     padding: 20px 0;
+    margin: 0 auto;
     max-width: 1200px;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
     width: 100%;
   }
   a {

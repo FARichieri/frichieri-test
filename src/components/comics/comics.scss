@@ -6,6 +6,7 @@
   gap: 20px 30px;
   margin: 0 auto;
   justify-content: center;
+  width: 100%;
 
   .navBar {
     display: flex;
@@ -74,19 +75,21 @@
   &.list {
     margin-top: 0;
     flex-direction: column;
-    margin: 0;
+    margin: 0 auto;
     width: 90%;
+    max-width: 1200px;
     .comic {
       width: 100%;
       display: flex;
       padding: 20px 0;
       border-bottom: 1px solid rgba(128, 128, 128, 0.26);
       width: 1024px;
+      max-width: 1200x;
+      margin: 0 auto;
       .info {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: start;
         width: 100%;
       }
     }

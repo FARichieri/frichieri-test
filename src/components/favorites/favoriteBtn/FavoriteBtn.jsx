@@ -2,7 +2,7 @@ import "./favoriteBtn.scss";
 import fav from "../../../images/fav.png";
 import noFav from "../../../images/noFav.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   addFavorite,
   deleteFavorite,

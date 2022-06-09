@@ -12,7 +12,9 @@ const FavoritesNav = () => {
   return (
     <div className="favoritesNav">
       <div className="favContainer">
-        <div className="favCounter">{Number(myFavorites.length)}</div>
+        {myFavorites.length > 0 && (
+          <div className="favCounter">{Number(myFavorites.length)}</div>
+        )}
         <Link to="/favorites">
           <img src={favIcon} alt="" className="favIcon" />
         </Link>
