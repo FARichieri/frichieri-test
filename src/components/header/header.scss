@@ -10,7 +10,7 @@
   .nav {
     font-size: 15px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.098);
-    background-color: gray;
+    background-color: black;
     width: 100%;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.438);
     height: 40px;
@@ -25,7 +25,8 @@
       width: 30px;
       display: flex;
       position: absolute;
-      left: 20px;
+      left: 50px;
+      align-items: center;
     }
 
     .login {
@@ -67,6 +68,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+  }
+  .title span {
+    transition: 0.3s;
+  }
+  .title span:hover {
+    color: red;
   }
   a {
     text-decoration: none;

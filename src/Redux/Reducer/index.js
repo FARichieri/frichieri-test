@@ -38,7 +38,7 @@ function rootReducer(state = InitialState, action) {
       let myComics = state.comics;
       let myFavorites = state.favorites;
       let myNewComic = myComics.find((comic) => comic.id === action.payload);
-      myFavorites.unshift(myNewComic);
+      myFavorites.push(myNewComic);
       return {
         ...state,
         favorites: myFavorites,
@@ -46,7 +46,7 @@ function rootReducer(state = InitialState, action) {
     case "DELETE_FAVORITE":
       let myFavorites2 = state.favorites;
       myFavorites2 = myFavorites2.filter(
-        (comic) => comic[0].id !== action.payload
+        (comic) => comic.id !== action.payload
       );
       return {
         ...state,

@@ -9,11 +9,11 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function App() {
+  const currentUser = useSelector((state) => state.currentUser);
+
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
-
-  const currentUser = useSelector((state) => state.currentUser);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
@@ -26,15 +26,7 @@ function App() {
         <Route path="/comic/:id" element={<ComicDetail />} />
         <Route path="*" element={<NotFound404 />} />
         <Route exact path="/login" element={<Login />} />
-        <Route
-          exact
-          path="/favorites"
-          element={
-            <RequireAuth>
-              <Favorites />
-            </RequireAuth>
-          }
-        />
+        <Route exact path="/favorites" element={ <RequireAuth><Favorites /></RequireAuth> }/>
       </Routes>
     </BrowserRouter>
   );

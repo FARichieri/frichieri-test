@@ -50,14 +50,13 @@ export const getComicDetail = (id) => {
         return extraInfoObj;
       };
       Promise.all([
-        getImg(
-          infoCharacterComic.data.results.associated_images[0].original_url
-        ),
+        getImg(infoCharacterComic.data.results.image.original_url),
         getExtraInfo(infoCharacterComic.data.results.character_credits),
         getExtraInfo(infoCharacterComic.data.results.location_credits),
         getExtraInfo(infoCharacterComic.data.results.team_credits),
         getExtraInfo(infoCharacterComic.data.results.concept_credits),
       ]).then((result) => detail.push(result));
+      console.log(detail);
       return {
         type: "GET_COMIC_DETAIL",
         payload: detail,

@@ -1,19 +1,21 @@
 import "./favoritesNav.scss";
 import favIcon from "../../../images/fav.png";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getFavorites } from "../../../Redux/Actions";
 
 const FavoritesNav = () => {
-  const myFavorites = useSelector((state) => state.favorites);
-  // console.log(myFavorites);
+  const myFavorites = useSelector((state) => state.favorites.length);
+  console.log(myFavorites);
+
   useEffect(() => {}, [myFavorites]);
 
   return (
     <div className="favoritesNav">
       <div className="favContainer">
-        {myFavorites.length > 0 && (
-          <div className="favCounter">{Number(myFavorites.length)}</div>
+        {myFavorites > 0 && (
+          <div className="favCounter">{myFavorites.toString()}</div>
         )}
         <Link to="/favorites">
           <img src={favIcon} alt="" className="favIcon" />

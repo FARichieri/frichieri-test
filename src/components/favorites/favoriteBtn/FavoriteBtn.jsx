@@ -13,9 +13,13 @@ import swal from "sweetalert";
 const FavoriteBtn = ({ id }) => {
   const dispatch = useDispatch();
   let myFavorites = useSelector((state) => state.favorites);
-  let whatIs;
-  myFavorites?.map((e) => (e.id === id ? (whatIs = true) : (whatIs = false)));
-  const [favorite, setFavorite] = useState(whatIs);
+  let isFav;
+  myFavorites?.find((e) => (e.id === id ? (isFav = true) : (isFav = false)));
+  const [favorite, setFavorite] = useState(isFav);
+  // let whatIs;
+  // myFavorites?.find((e) => (e.id == id ? (whatIs = true) : (whatIs = false)));
+  // const [favorite, setFavorite] = useState(whatIs);
+  // console.log(id, favorite);
 
   function handleFavorite() {
     if (favorite === true) {
