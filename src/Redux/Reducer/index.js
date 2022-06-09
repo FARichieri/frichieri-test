@@ -2,6 +2,7 @@ const InitialState = {
   comics: [],
   comicDetail: [],
   loading: false,
+  currentPage: 1,
 };
 
 function rootReducer(state = InitialState, action) {
@@ -26,6 +27,11 @@ function rootReducer(state = InitialState, action) {
         loading: false,
       };
     }
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
       return {
         ...state,

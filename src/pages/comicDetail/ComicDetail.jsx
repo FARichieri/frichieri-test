@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { getComicDetail } from "../../Redux/Actions";
 import "./comicDetail.scss";
 import { CircularProgress } from "@mui/material";
-import Header from "../../components/navBar/Header";
+import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
 const ComicDetail = () => {
@@ -36,10 +36,12 @@ const ComicDetail = () => {
                   <h1 className="title">Characters</h1>
                   <div className="charactersCredits">
                     {detail.character_credits.map((credit) => (
-                      <div className="credits">
-                        <div className="div">{credit.name}</div>
-                        <div className="div">
-                          {credit.api_detail_url + credit.name}
+                      <div className="info" key={credit.id}>
+                        <div className="credits">
+                          <div className="div">{credit.name}</div>
+                          <div className="div">
+                            {credit.api_detail_url + credit.name}
+                          </div>
                         </div>
                       </div>
                     ))}

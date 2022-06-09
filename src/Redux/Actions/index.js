@@ -23,15 +23,113 @@ export const getComicDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: "LOADING" });
     try {
-      const json = await axios.get(
+      const infoCharacterComic = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
-      return dispatch({
-        type: "GET_COMIC_DETAIL",
-        payload: json.data.results,
-      });
+      let objRetorno = {};
+      objRetorno.original_url =
+        infoCharacterComic.data.results.associated_images[0].original_url;
+
+      // let character_credits = ;
+
+      const getExtraInfo = async (extraInfo) => {
+        const extraInfoObj = extraInfo.map((info) => {
+          let obj = {
+            name: info.name,
+            id: info.id,
+            api_detail_url: info.api_detail_url,
+          };
+          return obj;
+        });
+
+        for (let i = 0; i < extraInfoObj.length; i++) {
+          let characterImages = await axios.get(
+            `https://cors-anywhere.herokuapp.com/${extraInfoObj[i].api_detail_url}?api_key=${API_KEY}&format=json`
+          );
+
+          extraInfoObj[i].icon_url =
+            characterImages.data.results.image.icon_url;
+        }
+        objRetorno.extraInfo = extraInfoObj;
+        return objRetorno;
+      };
+
+      const allPromise = Promise.all([
+        getExtraInfo(infoCharacterComic.data.results.character_credits),
+        getExtraInfo(infoCharacterComic.data.results.location_credits),
+        getExtraInfo(infoCharacterComic.data.results.team_credits),
+      ]);
+
+      // getExtraInfo(infoCharacterComic.data.results.character_credits);
+      // getExtraInfo(infoCharacterComic.data.results.location_credits);
+      // getExtraInfo(infoCharacterComic.data.results.team_credits);
+      // console.log(getExtraInfo(location_credits));
+      // console.log(getExtraInfo(team_credits));
+      // console.log(getExtraInfo(team_credits));
+      // console.log(getExtraInfo(concept_credits));
+
+      /*start Character */
+      // const characterObj = infoCharacterComic.data.results.character_credits.map((character) => {
+      //     let obj = {
+      //       name: character.name,
+      //       id: character.id,
+      //       api_detail_url: character.api_detail_url,
+      //     };
+      //     return obj;
+      //   });
+
+      // for (let i = 0; i < characterObj.length; i++) {
+      //   let characterImages = await axios.get(
+      //     `https://cors-anywhere.herokuapp.com/${characterObj[i].api_detail_url}?api_key=${API_KEY}&format=json`
+      //   );
+
+      //   characterObj[i].icon_url = characterImages.data.results.image.icon_url;
+      // }
+      // objRetorno.character = characterObj;
+      // /*end Character || start Location */
+      // const locationObj = infoCharacterComic.data.results.location_credits.map(locations =>{
+      //   let obj = {
+      //     name: locations.name,
+      //     id: locations.id,
+      //     api_detail_url: locations.api_detail_url,
+      //   }
+      //   return obj
+      // });
+      // for(let i = 0; i < locationObj.length; i++){
+      //   let locationImages = await axios.get(`https://cors-anywhere.herokuapp.com/${locationObj[i].api_detail_url}?api_key=${API_KEY}&format=json`)
+
+      //   locationObj[i].icon_url = locationImages.data.results.image.icon_url
+      // }
+      // objRetorno.location = locationObj;
+
+      // /* end Location */
+      // console.log(objRetorno);
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+// export const getComicDetail = (id) => {
+//   return async (dispatch) => {
+//     dispatch({ type: "LOADING" });
+//     try {
+//       const json = await axios.get(
+//         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
+//       );
+//       return dispatch({
+//         type: "GET_COMIC_DETAIL",
+//         payload: json.data.results,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
+export const setCurrentPage = (payload) => {
+  return {
+    type: "SET_CURRENT_PAGE",
+    payload: payload,
   };
 };

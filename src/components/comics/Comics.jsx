@@ -1,9 +1,10 @@
+import "./comics.scss";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComics } from "../../Redux/Actions";
 import { Link } from "react-router-dom";
-import "./comics.scss";
 import { CircularProgress } from "@mui/material";
+import PaginationC from "../pagination/Pagination";
 
 const Comics = ({ display }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,15 @@ const Comics = ({ display }) => {
   useEffect(() => {
     dispatch(getComics());
   }, [dispatch]);
+
+  // Pagination Info //
+  const currentPage = useSelector((state) => state.currentPage);
+  const comicsPerPage = 8;
+  const indexLastComic = currentPage * comicsPerPage;
+  const indexFirstComic = indexLastComic - comicsPerPage;
+  const currentComics =
+    comics?.length > 0 ? comics?.slice(indexFirstComic, indexLastComic) : null;
+  const totalPages = Math.ceil(comics.length / comicsPerPage);
 
   return (
     <div className={`comics ${display}`}>
@@ -29,7 +39,7 @@ const Comics = ({ display }) => {
         />
       ) : (
         <>
-          {comics?.map((comic) => (
+          {currentComics?.map((comic) => (
             <div className="comic" key={comic.id}>
               <Link to={`/${comic.id}`}>
                 <img src={comic.image.original_url} alt="" className="img" />
@@ -42,6 +52,9 @@ const Comics = ({ display }) => {
               </div>
             </div>
           ))}
+          <div className="pagination">
+            <PaginationC totalPages={totalPages} />
+          </div>
         </>
       )}
     </div>
