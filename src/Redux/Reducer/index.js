@@ -1,6 +1,7 @@
 const InitialState = {
   comics: [],
   comicDetail: [],
+  favorites: [],
   loading: false,
   currentPage: 1,
 };
@@ -31,6 +32,29 @@ function rootReducer(state = InitialState, action) {
       return {
         ...state,
         currentPage: action.payload,
+      };
+    case "ADD_FAVORITE":
+      let myComics = state.comics;
+      let myFavorites = state.favorites;
+      let myNewComic = myComics.find((comic) => comic.id === action.payload);
+      myFavorites.unshift(myNewComic);
+      return {
+        ...state,
+        favorites: myFavorites,
+      };
+    case "DELETE_FAVORITE":
+      let myFavorites2 = state.favorites;
+      myFavorites2 = myFavorites2.filter(
+        (comic) => comic[0].id !== action.payload
+      );
+      return {
+        ...state,
+        favorites: myFavorites2,
+      };
+    case "GET_FAVORITES":
+      return {
+        ...state,
+        favorites: state.favorites,
       };
     default:
       return {

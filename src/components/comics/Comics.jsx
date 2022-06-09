@@ -1,19 +1,23 @@
 import "./comics.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComics } from "../../Redux/Actions";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import PaginationC from "../pagination/Pagination";
+import FavoriteBtn from "../favorites/favoriteBtn/FavoriteBtn";
+import ListIcon from "@mui/icons-material/List";
+import ViewComfyIcon from "@mui/icons-material/ViewComfy";
+import Searchbar from "../searchbar/Searchbar";
 
-const Comics = ({ display }) => {
+const Comics = ({ comics }) => {
   const dispatch = useDispatch();
-  const comics = useSelector((state) => state.comics);
   const loading = useSelector((state) => state.loading);
+  const [display, setDisplay] = useState("grid");
 
-  useEffect(() => {
-    dispatch(getComics());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getComics());
+  // }, [dispatch]);
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
@@ -39,14 +43,36 @@ const Comics = ({ display }) => {
         />
       ) : (
         <>
+          <div className="navBar">
+            <h5 className="latestIssues">Latest Issues</h5>
+            <Searchbar />
+            <div className="showMods">
+              <div className={display === "list" ? "active" : "list"}>
+                <ListIcon
+                  onClick={() => setDisplay("list")}
+                  className={`icon`}
+                />
+                List
+              </div>
+              <div className={display === "grid" ? "active" : "grid"}>
+                <ViewComfyIcon
+                  onClick={() => setDisplay("grid")}
+                  className={`icon`}
+                />
+                Grid
+              </div>
+            </div>
+          </div>
           {currentComics?.map((comic) => (
             <div className="comic" key={comic.id}>
               <Link to={`/${comic.id}`}>
                 <img src={comic.image.original_url} alt="" className="img" />
               </Link>
               <div className="info">
+                <FavoriteBtn id={comic.id} />
                 <h3 className="name">
-                  {comic.name} {comic.issue_number}
+                  {comic.name ? comic.name : comic.volume.name} #
+                  {comic.issue_number}
                 </h3>
                 <h5 className="dateAdded">{comic.date_added}</h5>
               </div>

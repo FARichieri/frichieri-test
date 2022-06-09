@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
+import FavoritesNav from "../favorites/favoritesNav/FavoritesNav";
 import "./header.scss";
 
-const Header = ({ back }) => {
+const Header = () => {
   return (
     <div className="header">
-      <Link to="/">
-        <span className="title">ComicBook</span>
-      </Link>
+      <div className="nav">
+        <FavoritesNav />
+      </div>
+      <div className="title">
+        <Link to="/">
+          <span>ComicBook</span>
+        </Link>
+      </div>
     </div>
   );
 };

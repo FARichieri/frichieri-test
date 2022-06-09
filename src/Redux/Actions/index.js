@@ -128,8 +128,44 @@ export const getComicDetail = (id) => {
 // };
 
 export const setCurrentPage = (payload) => {
-  return {
-    type: "SET_CURRENT_PAGE",
-    payload: payload,
-  };
+  try {
+    return {
+      type: "SET_CURRENT_PAGE",
+      payload: payload,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addFavorite = (id) => {
+  try {
+    return {
+      type: "ADD_FAVORITE",
+      payload: id,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteFavorite = (id) => {
+  try {
+    return {
+      type: "DELETE_FAVORITE",
+      payload: id,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getFavorites = () => {
+  try {
+    return {
+      type: "GET_FAVORITES",
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };
