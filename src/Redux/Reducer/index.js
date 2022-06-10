@@ -1,5 +1,5 @@
 const InitialState = {
-  comics: JSON.parse(localStorage.getItem("comics")).data.results || [],
+  comics: JSON.parse(localStorage.getItem("comics"))?.data.results || [],
   comicsFiltered: [],
   comicDetail: [],
   favorites: [],
