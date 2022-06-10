@@ -1,7 +1,6 @@
 import "./comics.scss";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getComics } from "../../Redux/Actions";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import PaginationC from "../pagination/Pagination";
@@ -11,13 +10,16 @@ import ViewComfyIcon from "@mui/icons-material/ViewComfy";
 import Searchbar from "../searchbar/Searchbar";
 
 const Comics = ({ comics }) => {
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
   const [display, setDisplay] = useState("grid");
 
-  // useEffect(() => {
-  //   dispatch(getComics());
-  // }, [dispatch]);
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    });
+  };
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
@@ -34,18 +36,13 @@ const Comics = ({ comics }) => {
         <CircularProgress
           className="loader"
           color="inherit"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
+          style={{ position: "absolute", top: "50%", left: "49%" }}
         />
       ) : (
         <>
           <div className="navBar">
             <h5 className="latestIssues">Latest Issues</h5>
-            <Searchbar />
+            <Searchbar comics={comics} />
             <div className="showMods">
               <div className={display === "list" ? "active" : "list"}>
                 <ListIcon
@@ -70,12 +67,12 @@ const Comics = ({ comics }) => {
                   <img src={comic.image.original_url} alt="" className="img" />
                 </Link>
                 <div className="info">
-                  <FavoriteBtn id={comic.id} />
+                  <FavoriteBtn comic={comic} />
                   <h3 className="name">
                     {comic.name ? comic.name : comic.volume.name} #
                     {comic.issue_number}
                   </h3>
-                  <h5 className="dateAdded">{comic.date_added}</h5>
+                  <h5 className="dateAdded">{formatDate(comic.date_added)}</h5>
                 </div>
               </div>
             ))

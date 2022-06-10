@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/Actions";
 import FavoritesNav from "../favorites/favoritesNav/FavoritesNav";
 import "./header.scss";
@@ -18,6 +18,8 @@ const Header = () => {
           icon: "success",
         });
         dispatch(logout());
+        localStorage.removeItem("user");
+        window.location.reload();
       }
     });
   };

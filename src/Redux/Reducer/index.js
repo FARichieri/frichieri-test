@@ -2,19 +2,13 @@ const InitialState = {
   comics: [],
   comicDetail: [],
   favorites: [],
-  currentUser: {},
+  currentUser: null,
   loading: false,
   currentPage: 1,
 };
 
 function rootReducer(state = InitialState, action) {
   switch (action.type) {
-    case "LOADING": {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
     case "GET_COMICS": {
       return {
         ...state,
@@ -55,8 +49,21 @@ function rootReducer(state = InitialState, action) {
     case "GET_FAVORITES":
       return {
         ...state,
-        favorites: state.favorites,
+        favorites: action.payload,
+        loading: false,
       };
+    case "LOADING": {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    // case "STOP_LOADING": {
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //   };
+    // }
     case "LOGIN":
       return {
         ...state,
@@ -66,6 +73,7 @@ function rootReducer(state = InitialState, action) {
       return {
         ...state,
         currentUser: null,
+        favorites: [],
       };
     default:
       return {

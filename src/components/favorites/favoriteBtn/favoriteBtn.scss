@@ -9,5 +9,10 @@
     border-radius: 50%;
     display: flex;
     margin: auto;
+    transition: 0.5s;
+  }
+
+  img:hover {
+    transform: scale(1.1);
   }
 }

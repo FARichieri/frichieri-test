@@ -7,17 +7,20 @@ import { getFavorites } from "../../../Redux/Actions";
 
 const FavoritesNav = () => {
   const myFavorites = useSelector((state) => state.favorites.length);
-  console.log(myFavorites);
+  const currentUser = useSelector((state) => state.currentUser);
+  const dispatch = useDispatch();
 
-  useEffect(() => {}, [myFavorites]);
+  useEffect(() => {
+    currentUser && dispatch(getFavorites(currentUser.uid));
+  }, [currentUser]);
 
   return (
     <div className="favoritesNav">
       <div className="favContainer">
-        {myFavorites > 0 && (
-          <div className="favCounter">{myFavorites.toString()}</div>
-        )}
         <Link to="/favorites">
+          {myFavorites > 0 && (
+            <div className="favCounter">{myFavorites.toString()}</div>
+          )}
           <img src={favIcon} alt="" className="favIcon" />
         </Link>
       </div>

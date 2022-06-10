@@ -3,25 +3,22 @@ import fav from "../../../images/fav.png";
 import noFav from "../../../images/noFav.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  addFavorite,
-  deleteFavorite,
-  getFavorites,
-} from "../../../Redux/Actions";
+import { addFavorite, deleteFavorite } from "../../../Redux/Actions";
 import swal from "sweetalert";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
 
-const FavoriteBtn = ({ id }) => {
+const FavoriteBtn = ({ comic }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
   let myFavorites = useSelector((state) => state.favorites);
   let isFav;
-  myFavorites?.find((e) => (e.id === id ? (isFav = true) : (isFav = false)));
+  myFavorites?.find((e) =>
+    e.id === comic.id ? (isFav = true) : (isFav = false)
+  );
   const [favorite, setFavorite] = useState(isFav);
-  // let whatIs;
-  // myFavorites?.find((e) => (e.id == id ? (whatIs = true) : (whatIs = false)));
-  // const [favorite, setFavorite] = useState(whatIs);
-  // console.log(id, favorite);
 
-  function handleFavorite() {
+  const handleFavorite = () => {
     if (favorite === true) {
       swal({
         title: "Do you want to remove this comic from favorites?",
@@ -33,20 +30,36 @@ const FavoriteBtn = ({ id }) => {
           swal("Comic removed from favorites", {
             icon: "success",
           });
-          dispatch(deleteFavorite(id));
+          dispatch(deleteFavorite(comic.id));
           setFavorite(false);
+          const favRef = doc(db, "favorites", currentUser.uid); // Probar
+          updateDoc(favRef, {
+            favorites: arrayRemove(comic),
+          });
         }
       });
     } else if (!favorite) {
-      swal({
-        title: "Comic added to favorites!",
-        icon: "success",
-        button: "OK!",
-      });
-      dispatch(addFavorite(id));
-      setFavorite(true);
+      if (!currentUser) {
+        swal({
+          title: "Please log in to add comics to favorites!",
+          icon: "warning",
+          button: "OK!",
+        });
+      } else {
+        swal({
+          title: "Comic added to favorites!",
+          icon: "success",
+          button: "OK!",
+        });
+        dispatch(addFavorite(comic.id));
+        setFavorite(true);
+        const favRef = doc(db, "favorites", currentUser.uid);
+        updateDoc(favRef, {
+          favorites: arrayUnion(comic),
+        });
+      }
     }
-  }
+  };
 
   return (
     <div className="favoriteBtn">

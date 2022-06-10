@@ -1,6 +1,6 @@
 import "./searchbar.scss";
 
-const Searchbar = () => {
+const Searchbar = ({ comics }) => {
   return (
     <div className="searchbar">
       <input type="text" className="searchInput" placeholder="Search..." />
