@@ -9,16 +9,49 @@
     margin: auto;
     display: flex;
     justify-content: center;
+    max-width: 1400px;
 
     .info {
       display: flex;
       flex-direction: column;
       flex: 2;
       padding: 0 20px 0 100px;
+      box-sizing: content-box;
+    }
+
+    .infoSection {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 2;
 
       .title {
         border-bottom: 1px solid rgba(96, 95, 95, 0.44);
         text-align: left;
+        font-size: 1.3rem;
+        padding-bottom: 10px;
+      }
+
+      .subInfoContainer {
+        grid-template-columns: auto auto;
+        display: grid;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .subInfo {
+        font-weight: 400;
+        color: green;
+        display: flex;
+        width: 200px;
+        justify-content: center;
+        padding: 5px 0;
+        height: 40px;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
       }
     }
 

@@ -14,8 +14,8 @@ const ComicDetail = () => {
   const comicDetail = useSelector((state) => state.comicDetail);
 
   useEffect(() => {
-    dispatch(getComicDetail(id));
     try {
+      dispatch(getComicDetail(id));
     } catch (error) {}
   }, [dispatch]);
 
@@ -32,27 +32,64 @@ const ComicDetail = () => {
           {comicDetail?.map((detail) => (
             <div className="detailContainer" key={detail.id}>
               <div className="info">
-                <div className="characters">
+                <div className="infoSection">
                   <h1 className="title">Characters</h1>
-                  <div className="charactersCredits">
+                  <div className="subInfoContainer">
                     {detail.character_credits.map((credit) => (
-                      <div className="info" key={credit.id}>
+                      <div className="subInfo" key={credit.id}>
                         <div className="credits">
-                          <div className="div">{credit.name}</div>
-                          <div className="div">
-                            {credit.api_detail_url + credit.name}
-                          </div>
+                          <a href={credit.site_detail_url} target="_blank">
+                            <span>{credit.name}</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="infoSection">
+                  <h1 className="title">Teams</h1>
+                  <div className="subInfoContainer">
+                    {detail.team_credits.map((team) => (
+                      <div className="subInfo" key={team.id}>
+                        <div className="teams">
+                          <a href={team.site_detail_url} target="_blank">
+                            <span>{team.name}</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="infoSection">
+                  <h1 className="title">Locations</h1>
+                  <div className="subInfoContainer">
+                    {detail.location_credits.map((location) => (
+                      <div className="subInfo" key={location.id}>
+                        <div className="locations">
+                          <a href={location.site_detail_url} target="_blank">
+                            <span>{location.name}</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="infoSection">
+                  <h1 className="title">Concepts</h1>
+                  <div className="subInfoContainer">
+                    {detail.concept_credits.map((concept) => (
+                      <div className="subInfo" key={concept.id}>
+                        <div className="concepts">
+                          <a href={concept.site_detail_url} target="_blank">
+                            <span>{concept.name}</span>
+                          </a>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <img
-                className="img"
-                src={detail.associated_images[0].original_url}
-                alt=""
-              />
+              <img className="img" src={detail.image.original_url} alt="" />
             </div>
           ))}
         </div>

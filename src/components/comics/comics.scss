@@ -32,6 +32,7 @@
         display: flex;
         align-items: center;
         color: green;
+
         .icon {
           cursor: pointer;
         }
@@ -42,6 +43,7 @@
         display: flex;
         align-items: center;
         color: green;
+
         .icon {
           cursor: pointer;
         }
@@ -53,6 +55,7 @@
         align-items: center;
         color: black;
         font-weight: bolder;
+
         .icon {
           cursor: pointer;
         }
@@ -62,15 +65,51 @@
 
   .comic {
     width: 250px;
+    position: relative;
+
     .img {
       width: 250px;
       height: 375px;
-      border: 3px solid black;
+      box-shadow: 0 0 10px 4px black;
+      transition: .5s;
     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .goDetail {
+      opacity: 0;
+      color: rgba(255, 255, 255, 0.845);
+      font-weight: bold;
+      font-size: 2rem;
+      position: absolute;
+      text-decoration: none;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 250px;
+      height: 375px;
+      transition: .5s;
+    }
+
+    .goDetail:hover {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.625);
+    }
+
     .info {
+      height: 100px;
+      padding: 5px;
+
       .name {
         margin: 0;
+        padding: 5px;
       }
+
       .dateAdded {
         margin: 0;
         color: gray;
@@ -89,11 +128,12 @@
     .comic {
       width: 100%;
       display: flex;
-      padding: 20px 0;
       border-bottom: 1px solid rgba(128, 128, 128, 0.26);
       width: 1024px;
       max-width: 1200x;
-      margin: 0 auto;
+      margin: 20px auto;
+      padding-bottom: 20px;
+
       .info {
         display: flex;
         flex-direction: column;

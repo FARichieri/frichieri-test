@@ -6,8 +6,8 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getComics, getFavorites, login } from "../../../Redux/Actions";
+import { useDispatch } from "react-redux";
+import { getFavorites, login } from "../../../Redux/Actions";
 import swal from "sweetalert";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -23,7 +23,6 @@ const LoginForm = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         dispatch(getFavorites(user.uid));
         dispatch(login(user));

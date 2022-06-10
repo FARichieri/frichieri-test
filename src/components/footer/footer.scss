@@ -11,6 +11,12 @@
   font-size: 0.8rem;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.438);
 
+  .logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+  }
+
   .github {
     cursor: pointer;
     text-decoration: none;

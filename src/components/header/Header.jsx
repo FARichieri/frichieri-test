@@ -4,8 +4,10 @@ import { logout } from "../../Redux/Actions";
 import FavoritesNav from "../favorites/favoritesNav/FavoritesNav";
 import "./header.scss";
 import swal from "sweetalert";
+import errorImg from "../../images/error.png";
 
 const Header = () => {
+  const error = useSelector((state) => state.error);
   const handleLogout = () => {
     swal({
       title: "Do you want to log out?",
@@ -41,6 +43,12 @@ const Header = () => {
             </Link>
           )}
         </div>
+        {error && (
+          <div className="errorMsg">
+            <span>{error}</span>
+            <img className="errorImg" src={errorImg} alt="error" />{" "}
+          </div>
+        )}
         <FavoritesNav />
       </div>
       <div className="title">

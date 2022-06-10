@@ -11,11 +11,9 @@
   .nav {
     font-size: 15px;
     background: rgb(29, 29, 29);
-    background: linear-gradient(
-      0deg,
-      rgba(19, 19, 19, 0.895) 0%,
-      rgba(0, 0, 0, 1) 100%
-    );
+    background: linear-gradient(0deg,
+        rgba(19, 19, 19, 0.895) 0%,
+        rgba(0, 0, 0, 1) 100%);
     width: 100%;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.702);
     height: 50px;
@@ -25,6 +23,7 @@
     justify-content: flex-end;
     position: fixed;
     top: 0;
+    z-index: 1;
 
     .logBtns {
       height: 30px;
@@ -48,6 +47,7 @@
       color: white;
       font-weight: bold;
     }
+
     .logout {
       border: none;
       border-radius: 10px;
@@ -61,9 +61,25 @@
       color: white;
       font-weight: bold;
     }
+
     .login:hover,
     .logout:hover {
       opacity: 0.5;
+    }
+
+    .errorMsg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: red;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+
+      .errorImg {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 
@@ -76,12 +92,15 @@
     justify-content: center;
     width: 100%;
   }
+
   .title span {
     transition: 0.3s;
   }
+
   .title span:hover {
     color: red;
   }
+
   a {
     text-decoration: none;
     color: inherit;

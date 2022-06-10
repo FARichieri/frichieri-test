@@ -65,12 +65,12 @@ const Comics = ({ comics }) => {
               <div className="comic" key={comic.id}>
                 <Link to={`/comic/${comic.id}`}>
                   <img src={comic.image.original_url} alt="" className="img" />
+                  <div className="goDetail">Details</div>
                 </Link>
                 <div className="info">
                   <FavoriteBtn comic={comic} />
                   <h3 className="name">
-                    {comic.name ? comic.name : comic.volume.name} #
-                    {comic.issue_number}
+                    {comic.volume.name || comic.name} #{comic.issue_number}
                   </h3>
                   <h5 className="dateAdded">{formatDate(comic.date_added)}</h5>
                 </div>

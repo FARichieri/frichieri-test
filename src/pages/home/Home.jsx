@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getComics } from "../../Redux/Actions";
 
 const Home = () => {
-  const comics = useSelector((state) => state.comics);
+  const allComics = useSelector((state) => state.comics);
+  const comicsFiltered = useSelector((state) => state.comicsFiltered);
+  const comics = comicsFiltered || allComics;
   const dispatch = useDispatch();
 
   useEffect(() => {

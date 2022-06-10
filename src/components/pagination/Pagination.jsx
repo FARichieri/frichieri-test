@@ -23,17 +23,10 @@ function PaginationC({ totalPages }) {
       <Pagination
         color="primary"
         size="medium"
-        variant="outlined"
         shape="circular"
         page={currentPage}
         count={totalPages}
         siblingCount={0}
-        sx={{
-          color: "white",
-          "& .MuiPaginationItem-root": {
-            color: "black",
-          },
-        }}
         renderItem={(item) => (
           <PaginationItem
             component={Link}

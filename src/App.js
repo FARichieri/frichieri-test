@@ -4,7 +4,7 @@ import ComicDetail from "./pages/comicDetail/ComicDetail";
 import Favorites from "./pages/favorites/Favorites";
 import NotFound404 from "./pages/notFound404/NotFound404";
 import { Navigate } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavorites, login } from "./Redux/Actions";
 import Login from './pages/login/Login'

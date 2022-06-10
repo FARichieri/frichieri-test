@@ -1,9 +1,11 @@
 const InitialState = {
-  comics: [],
+  comics: JSON.parse(localStorage.getItem("comics")).data.results || [],
+  comicsFiltered: [],
   comicDetail: [],
   favorites: [],
   currentUser: null,
   loading: false,
+  error: null,
   currentPage: 1,
 };
 
@@ -58,12 +60,13 @@ function rootReducer(state = InitialState, action) {
         loading: true,
       };
     }
-    // case "STOP_LOADING": {
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //   };
-    // }
+    case "ERROR": {
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    }
     case "LOGIN":
       return {
         ...state,
@@ -74,6 +77,17 @@ function rootReducer(state = InitialState, action) {
         ...state,
         currentUser: null,
         favorites: [],
+      };
+    case "SEARCH_BY_NAME":
+      console.log(action.payload);
+      const comics = state.comics;
+      let matched = comics.filter((comic) =>
+        (comic.volume.name || comic.name).toLowerCase().includes(action.payload)
+      );
+      return {
+        ...state,
+        comicsFiltered: matched,
+        currentPage: 1,
       };
     default:
       return {
