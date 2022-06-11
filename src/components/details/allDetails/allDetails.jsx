@@ -11,9 +11,9 @@ const AllDetails = () => {
   const loading = useSelector((state) => state.loading);
   const comicDetail = useSelector((state) => state.comicDetail);
 
-  // useEffect(() => {
-  //   dispatch(getComicDetail(id));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getComicDetail(id));
+  }, [dispatch]);
 
   return (
     <div className="comicDetail">
