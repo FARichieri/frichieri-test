@@ -52,19 +52,30 @@
         padding: 5px 0;
         height: 40px;
         position: relative;
+        justify-content: space-between;
 
         .infoMapped {
           display: flex;
           margin: auto;
           position: absolute;
           height: 100%;
-          align-items: center;
           top: 0;
+          flex-direction: row;
+          text-align: left;
         }
 
         a {
+          align-items: center;
+          display: flex;
           text-decoration: none;
           color: inherit;
+          cursor: pointer;
+        }
+
+        .subImg {
+          width: 40px;
+          height: 40px;
+          padding: 0 10px;
         }
       }
     }

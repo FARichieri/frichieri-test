@@ -1,0 +1,121 @@
+.comicDetail {
+  display: flex;
+  min-height: 110vh;
+  flex-direction: column;
+  position: relative;
+  background-color: rgba(80, 79, 79, 0.067);
+
+  .detailContainer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    animation-name: appear;
+    animation-duration: 1s;
+    margin-bottom: 100px;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+      padding: 20px 20px;
+      box-sizing: content-box;
+    }
+
+    .infoSection {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+
+      .title {
+        border-bottom: 1px solid rgba(96, 95, 95, 0.44);
+        text-align: left;
+        font-size: 1.3rem;
+        padding-bottom: 10px;
+      }
+
+      .subInfoContainer {
+        grid-template-columns: auto auto;
+        display: grid;
+        flex-wrap: wrap;
+        gap: 10px 0;
+      }
+
+      .subInfo {
+        font-weight: 400;
+        color: green;
+        display: flex;
+        // max-width: 200px;
+        width: 100%;
+        justify-content: center;
+        padding: 5px 0;
+        height: 40px;
+        position: relative;
+        justify-content: space-between;
+
+        .infoMapped {
+          display: flex;
+          margin: auto;
+          position: absolute;
+          height: 100%;
+          top: 0;
+          flex-direction: row;
+          text-align: left;
+        }
+
+        a {
+          align-items: center;
+          display: flex;
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
+        }
+
+        .subImg {
+          width: 40px;
+          height: 40px;
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .detailImg {
+      display: flex;
+      width: 500px;
+      height: 550px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .detailContainer {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .info {
+      margin-left: 0;
+    }
+
+    .infoSection {
+      width: 100%;
+    }
+  }
+
+
+  .detailImg {
+    max-width: 100%;
+    margin: auto;
+    flex: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

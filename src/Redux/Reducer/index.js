@@ -19,6 +19,7 @@ function rootReducer(state = InitialState, action) {
       };
     }
     case "GET_COMIC_DETAIL": {
+      localStorage.setItem("detail", JSON.stringify(action.payload));
       return {
         ...state,
         comicDetail: [action.payload],

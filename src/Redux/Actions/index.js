@@ -27,32 +27,32 @@ export const getComics = () => {
   };
 };
 
-// export const getComicDetail = (id) => {
-//   return async (dispatch) => {
-//     dispatch({ type: "LOADING" });
-//     try {
-//       const json = await axios.get(
-//         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
-//       );
-//       json.data.results && localStorage.setItem("detail", JSON.stringify(json));
-//       dispatch({
-//         type: "GET_COMIC_DETAIL",
-//         payload: json.data.results,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: "ERROR",
-//         payload: error.message,
-//       });
-//     }
-//   };
-// };
+// This function fetch the main detail of the character without images of subproperties. (Images of characters, locations, teams and concepts)
+export const getSimpleDetails = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: "LOADING" });
+    try {
+      const json = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
+      );
+      json.data.results && localStorage.setItem("detail", JSON.stringify(json));
+      dispatch({
+        type: "GET_COMIC_DETAIL",
+        payload: json.data.results,
+      });
+    } catch (error) {
+      dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });
+    }
+  };
+};
 
 export const getComicDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: "LOADING" });
     try {
-      const detail = [];
       const infoCharacterComic = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
@@ -89,8 +89,6 @@ export const getComicDetail = (id) => {
           payload: result,
         })
       );
-      detail && localStorage.setItem("detail", JSON.stringify(detail));
-      console.log(detail);
     } catch (error) {
       dispatch({
         type: "ERROR",
@@ -100,6 +98,11 @@ export const getComicDetail = (id) => {
     }
   };
 };
+// To be tested
+// extraInfoObj.map(info => {
+//   let characterImages = await axios.get(`https://cors-anywhere.herokuapp.com/${info.api_detail_url}?api_key=${API_KEY}&format=json`)
+//   info.icon_url = characterImages.data.results.image.icon_url;
+// })
 
 export const setCurrentPage = (payload) => {
   try {

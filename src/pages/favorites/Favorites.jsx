@@ -2,7 +2,7 @@ import "./favorites.scss";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Comics from "../../components/comics/Comics";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Favorites = () => {
   const myFavorites = useSelector((state) => state.favorites);
