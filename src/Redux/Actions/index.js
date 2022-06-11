@@ -29,8 +29,7 @@ export const getComics = () => {
     dispatch({ type: "LOADING" });
     try {
       const json = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issues/?api_key=${API_KEY}&format=json`,
-        { mode: "cors" }
+        `https://corsanywhere.herokuapp.com/https://comicvine.gamespot.com/api/issues/?api_key=${API_KEY}&format=json`
       );
       json.data.results && localStorage.setItem("comics", JSON.stringify(json));
 
@@ -54,8 +53,7 @@ export const getSimpleDetails = (id) => {
     dispatch({ type: "LOADING" });
     try {
       const json = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`,
-        { mode: "cors" }
+        `https://corsanywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
       json.data.results && localStorage.setItem("detail", JSON.stringify(json));
       dispatch({
@@ -76,8 +74,7 @@ export const getComicDetail = (id) => {
     dispatch({ type: "LOADING" });
     try {
       const infoCharacterComic = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`,
-        { mode: "cors" }
+        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
       const getImg = (comicImg) => {
         return comicImg;
