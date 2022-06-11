@@ -8,6 +8,7 @@ import FavoriteBtn from "../favorites/favoriteBtn/FavoriteBtn";
 import ListIcon from "@mui/icons-material/List";
 import ViewComfyIcon from "@mui/icons-material/ViewComfy";
 import Searchbar from "../searchbar/Searchbar";
+import nothingFound from "../../images/nothingFound.png";
 
 const Comics = ({ comics }) => {
   const loading = useSelector((state) => state.loading);
@@ -30,6 +31,14 @@ const Comics = ({ comics }) => {
     comics?.length > 0 ? comics?.slice(indexFirstComic, indexLastComic) : null;
   const totalPages = Math.ceil(comics.length / comicsPerPage);
 
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 540;
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    width < breakpoint && setDisplay("grid");
+  }, [width]);
+
   return (
     <div className={`comics ${display}`}>
       {loading ? (
@@ -43,22 +52,24 @@ const Comics = ({ comics }) => {
           <div className="navBar">
             <h5 className="latestIssues">Latest Issues</h5>
             <Searchbar comics={comics} />
-            <div className="showMods">
-              <div className={display === "list" ? "active" : "list"}>
-                <ListIcon
-                  onClick={() => setDisplay("list")}
-                  className={`icon`}
-                />
-                List
+            {width > breakpoint && (
+              <div className="showMods">
+                <div className={display === "list" ? "active" : "list"}>
+                  <ListIcon
+                    onClick={() => setDisplay("list")}
+                    className={`icon`}
+                  />
+                  List
+                </div>
+                <div className={display === "grid" ? "active" : "grid"}>
+                  <ViewComfyIcon
+                    onClick={() => setDisplay("grid")}
+                    className={`icon`}
+                  />
+                  Grid
+                </div>
               </div>
-              <div className={display === "grid" ? "active" : "grid"}>
-                <ViewComfyIcon
-                  onClick={() => setDisplay("grid")}
-                  className={`icon`}
-                />
-                Grid
-              </div>
-            </div>
+            )}
           </div>
           {currentComics ? (
             currentComics.map((comic) => (
@@ -77,11 +88,16 @@ const Comics = ({ comics }) => {
               </div>
             ))
           ) : (
-            <h1>{`Nothing found :(`}</h1>
+            <div className="nothingFound">
+              <span>Nothing found</span>
+              <img src={nothingFound} alt="" />
+            </div>
           )}
-          <div className="pagination">
-            <PaginationC totalPages={totalPages} />
-          </div>
+          {currentComics && (
+            <div className="pagination">
+              <PaginationC totalPages={totalPages} />
+            </div>
+          )}
         </>
       )}
     </div>

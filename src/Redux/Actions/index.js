@@ -35,7 +35,7 @@ export const getComicDetail = (id) => {
         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
       json.data.results && localStorage.setItem("detail", JSON.stringify(json));
-      return dispatch({
+      dispatch({
         type: "GET_COMIC_DETAIL",
         payload: json.data.results,
       });
@@ -86,10 +86,10 @@ export const getComicDetail = (id) => {
 //       ]).then((result) => detail.push(result));
 //       detail && localStorage.setItem("detail", JSON.stringify(detail));
 //       console.log(detail);
-//       return {
+//       dispatch({
 //         type: "GET_COMIC_DETAIL",
-//         payload: detail,
-//       };
+//         payload: detail[0],
+//       });
 //     } catch (error) {
 //       console.log(error);
 //     }
@@ -110,10 +110,10 @@ export const setCurrentPage = (payload) => {
 export const addFavorite = (id) => {
   return (dispatch) => {
     try {
-      return {
+      dispatch({
         type: "ADD_FAVORITE",
         payload: id,
-      };
+      });
     } catch (error) {
       dispatch({
         type: "ERROR",
@@ -126,10 +126,10 @@ export const addFavorite = (id) => {
 export const deleteFavorite = (id) => {
   return (dispatch) => {
     try {
-      return {
+      dispatch({
         type: "DELETE_FAVORITE",
         payload: id,
-      };
+      });
     } catch (error) {
       dispatch({
         type: "ERROR",
@@ -161,10 +161,10 @@ export const getFavorites = (id) => {
 export const login = (user) => {
   return (dispatch) => {
     try {
-      return {
+      dispatch({
         type: "LOGIN",
         payload: user,
-      };
+      });
     } catch (error) {
       dispatch({
         type: "ERROR",
@@ -177,9 +177,9 @@ export const login = (user) => {
 export const logout = () => {
   return (dispatch) => {
     try {
-      return {
+      dispatch({
         type: "LOGOUT",
-      };
+      });
     } catch (error) {
       dispatch({
         type: "ERROR",

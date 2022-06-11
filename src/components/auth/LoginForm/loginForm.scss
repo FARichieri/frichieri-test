@@ -4,12 +4,13 @@
   align-items: center;
   margin: auto;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 50px;
 
   .infoLogin {
     margin-bottom: 10px;
     font-weight: bolder;
     font-size: 1.2rem;
+
     .highlight {
       color: red;
     }
@@ -20,7 +21,12 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.372);
+  border-radius: 10px;
+  padding: 10px 0;
+  margin: 20px 0;
 }
+
 .formInput {
   width: 200px;
   height: 30px;
@@ -30,37 +36,44 @@ form {
   border-bottom: 1px solid gray;
   outline: none;
 }
+
 .logSubmit {
   width: 200px;
   height: 30px;
   margin: 10px;
   border: none;
   background-color: rgb(193, 7, 7);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.372);
   color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
   transition: 0.3s;
 }
+
 .recomendation {
   width: 100%;
 }
+
 .changeForm {
   width: 100px;
   height: 30px;
   margin: 10px;
   border: none;
   background-color: rgba(5, 5, 168, 0.674);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.372);
   color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
   transition: 0.3s;
 }
+
 .changeForm:hover,
 .logSubmit:hover {
   opacity: 0.5;
 }
+
 .error {
   font-size: 12px;
   color: red;

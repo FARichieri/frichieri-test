@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 
 const Login = () => {
   return (
-    <div className="login">
+    <div className="loginPage">
       <Header />
       <LoginForm />
       <Footer />

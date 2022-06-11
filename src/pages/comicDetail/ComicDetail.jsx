@@ -37,7 +37,7 @@ const ComicDetail = () => {
                   <div className="subInfoContainer">
                     {detail.character_credits.map((credit) => (
                       <div className="subInfo" key={credit.id}>
-                        <div className="credits">
+                        <div className="infoMapped">
                           <a href={credit.site_detail_url} target="_blank">
                             <span>{credit.name}</span>
                           </a>
@@ -51,7 +51,7 @@ const ComicDetail = () => {
                   <div className="subInfoContainer">
                     {detail.team_credits.map((team) => (
                       <div className="subInfo" key={team.id}>
-                        <div className="teams">
+                        <div className="infoMapped">
                           <a href={team.site_detail_url} target="_blank">
                             <span>{team.name}</span>
                           </a>
@@ -65,7 +65,7 @@ const ComicDetail = () => {
                   <div className="subInfoContainer">
                     {detail.location_credits.map((location) => (
                       <div className="subInfo" key={location.id}>
-                        <div className="locations">
+                        <div className="infoMapped">
                           <a href={location.site_detail_url} target="_blank">
                             <span>{location.name}</span>
                           </a>
@@ -79,7 +79,7 @@ const ComicDetail = () => {
                   <div className="subInfoContainer">
                     {detail.concept_credits.map((concept) => (
                       <div className="subInfo" key={concept.id}>
-                        <div className="concepts">
+                        <div className="infoMapped">
                           <a href={concept.site_detail_url} target="_blank">
                             <span>{concept.name}</span>
                           </a>
@@ -89,7 +89,11 @@ const ComicDetail = () => {
                   </div>
                 </div>
               </div>
-              <img className="img" src={detail.image.original_url} alt="" />
+              <img
+                className="detailImg"
+                src={detail.image.original_url}
+                alt=""
+              />
             </div>
           ))}
         </div>

@@ -9,13 +9,17 @@
     margin: auto;
     display: flex;
     justify-content: center;
-    max-width: 1400px;
+    max-width: 1200px;
+    animation-name: appear;
+    animation-duration: 1s;
 
     .info {
       display: flex;
       flex-direction: column;
       flex: 2;
-      padding: 0 20px 0 100px;
+      // margin: 0 20px 0 100px;
+      // margin-left: 100px;
+      padding: 20px 20px;
       box-sizing: content-box;
     }
 
@@ -36,17 +40,28 @@
         grid-template-columns: auto auto;
         display: grid;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 10px 0;
       }
 
       .subInfo {
         font-weight: 400;
         color: green;
         display: flex;
-        width: 200px;
+        // max-width: 200px;
+        width: 100%;
         justify-content: center;
         padding: 5px 0;
         height: 40px;
+        position: relative;
+
+        .infoMapped {
+          display: flex;
+          margin: auto;
+          position: absolute;
+          height: 100%;
+          align-items: center;
+          top: 0;
+        }
 
         a {
           text-decoration: none;
@@ -55,10 +70,42 @@
       }
     }
 
-    .img {
+    .detailImg {
       display: flex;
       width: 500px;
       height: 550px;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .detailContainer {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .info {
+      margin-left: 0;
+    }
+
+    .infoSection {
+      width: 100%;
+    }
+  }
+
+
+  .detailImg {
+    max-width: 100%;
+    margin: auto;
+    flex: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

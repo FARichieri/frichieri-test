@@ -90,7 +90,7 @@ const LoginForm = () => {
             {error && <span className="error">Wrogn email or password!</span>}
           </form>
           <div className="recomendation">
-            If you are not registered, please{" "}
+            I don't have account{" "}
             <button className="changeForm" onClick={() => setRegister(true)}>
               Register
             </button>
@@ -121,7 +121,7 @@ const LoginForm = () => {
             {error && <span className="error">Wrogn email or password!</span>}
           </form>
           <div className="recomendation">
-            If you are already registered, please{" "}
+            I have an account
             <button className="changeForm" onClick={() => setRegister(false)}>
               Login
             </button>

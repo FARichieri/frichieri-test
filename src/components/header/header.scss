@@ -10,10 +10,7 @@
 
   .nav {
     font-size: 15px;
-    background: rgb(29, 29, 29);
-    background: linear-gradient(0deg,
-        rgba(19, 19, 19, 0.895) 0%,
-        rgba(0, 0, 0, 1) 100%);
+    background-color: rgba(0, 0, 0, 0.939);
     width: 100%;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.702);
     height: 50px;
@@ -46,6 +43,7 @@
       transition: 0.3s;
       color: white;
       font-weight: bold;
+      opacity: 0.5;
     }
 
     .logout {
@@ -60,11 +58,13 @@
       transition: 0.3s;
       color: white;
       font-weight: bold;
+      opacity: 0.5;
     }
 
     .login:hover,
     .logout:hover {
-      opacity: 0.5;
+      opacity: 1;
+      box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.197);
     }
 
     .errorMsg {
@@ -75,6 +75,7 @@
       position: absolute;
       left: 50%;
       transform: translate(-50%);
+      z-index: 1;
 
       .errorImg {
         width: 30px;
@@ -98,7 +99,7 @@
   }
 
   .title span:hover {
-    color: red;
+    color: rgb(179, 17, 17);
   }
 
   a {

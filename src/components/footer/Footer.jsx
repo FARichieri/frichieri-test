@@ -3,13 +3,13 @@ import logo from "../../images/comic.png";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer reveal">
       <img className="logo" src={logo} alt="" />
 
       <a
         href="https://github.com/FARichieri/frichieri-test"
         target="_blank"
-        className="github"
+        className="github "
       >
         Copyright © 2022 ComicBook
       </a>
