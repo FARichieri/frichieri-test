@@ -45,7 +45,12 @@ const Comics = ({ comics }) => {
         <CircularProgress
           className="loader"
           color="inherit"
-          style={{ position: "absolute", top: "50%", left: "50%" }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            margin: "auto",
+          }}
         />
       ) : (
         <>
@@ -75,7 +80,11 @@ const Comics = ({ comics }) => {
             currentComics.map((comic) => (
               <div className="comic" key={comic.id}>
                 <Link to={`/comic/${comic.id}`}>
-                  <img src={comic.image.original_url} alt="" className="img" />
+                  <img
+                    src={comic.image.original_url}
+                    alt=""
+                    className="comicImg"
+                  />
                   <div className="goDetail">Details</div>
                 </Link>
                 <div className="info">

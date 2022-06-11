@@ -67,8 +67,7 @@
     width: 250px;
     position: relative;
 
-
-    .img {
+    .comicImg {
       width: 250px;
       height: 375px;
       box-shadow: 0 0 10px 4px black;
@@ -176,5 +175,20 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 539px) {
+
+  .comics {
+
+    .comic {
+      width: 90%;
+
+      .comicImg {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }

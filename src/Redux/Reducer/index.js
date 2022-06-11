@@ -87,7 +87,6 @@ function rootReducer(state = InitialState, action) {
         favorites: [],
       };
     case "SEARCH_BY_NAME":
-      console.log(action.payload);
       const comics = state.comics;
       let matched = comics.filter((comic) =>
         (comic.volume.name || comic.name).toLowerCase().includes(action.payload)
