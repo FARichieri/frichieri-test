@@ -2,13 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getComicDetail } from "../../Redux/Actions";
-import "./comicDetail.scss";
+import "./details.scss";
 import { CircularProgress } from "@mui/material";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
-import Details from "../../components/details/Details";
 
-const ComicDetail = () => {
+const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
@@ -20,25 +17,24 @@ const ComicDetail = () => {
 
   return (
     <div className="comicDetail">
-      <Header />
-      <Details />
-      {/* {loading ? (
+      {loading ? (
         <CircularProgress
           color="inherit"
           style={{ position: "absolute", top: "50%", left: "50%" }}
         />
       ) : (
-        <div className="detail">
+        <div>
           {comicDetail?.map((detail) => (
             <div className="detailContainer" key={detail.id}>
               <div className="info">
                 <div className="infoSection">
                   <h1 className="title">Characters</h1>
                   <div className="subInfoContainer">
-                    {detail.character_credits.map((credit) => (
+                    {detail[1]?.map((credit) => (
                       <div className="subInfo" key={credit.id}>
                         <div className="infoMapped">
                           <a href={credit.site_detail_url} target="_blank">
+                            <img src={credit.icon_url} alt="character" />
                             <span>{credit.name}</span>
                           </a>
                         </div>
@@ -49,10 +45,11 @@ const ComicDetail = () => {
                 <div className="infoSection">
                   <h1 className="title">Teams</h1>
                   <div className="subInfoContainer">
-                    {detail.team_credits.map((team) => (
+                    {detail[2]?.map((team) => (
                       <div className="subInfo" key={team.id}>
                         <div className="infoMapped">
                           <a href={team.site_detail_url} target="_blank">
+                            <img src={team.icon_url} alt="team" />
                             <span>{team.name}</span>
                           </a>
                         </div>
@@ -63,10 +60,11 @@ const ComicDetail = () => {
                 <div className="infoSection">
                   <h1 className="title">Locations</h1>
                   <div className="subInfoContainer">
-                    {detail.location_credits.map((location) => (
+                    {detail[3]?.map((location) => (
                       <div className="subInfo" key={location.id}>
                         <div className="infoMapped">
                           <a href={location.site_detail_url} target="_blank">
+                            <img src={location.icon_url} alt="" />
                             <span>{location.name}</span>
                           </a>
                         </div>
@@ -77,10 +75,11 @@ const ComicDetail = () => {
                 <div className="infoSection">
                   <h1 className="title">Concepts</h1>
                   <div className="subInfoContainer">
-                    {detail.concept_credits.map((concept) => (
+                    {detail[4]?.map((concept) => (
                       <div className="subInfo" key={concept.id}>
                         <div className="infoMapped">
                           <a href={concept.site_detail_url} target="_blank">
+                            <img src={concept.icon_url} alt="" />
                             <span>{concept.name}</span>
                           </a>
                         </div>
@@ -89,18 +88,13 @@ const ComicDetail = () => {
                   </div>
                 </div>
               </div>
-              <img
-                className="detailImg"
-                src={detail.image.original_url}
-                alt=""
-              />
+              <img className="detailImg" src={detail[0]} alt="" />
             </div>
           ))}
         </div>
-      )} */}
-      <Footer />
+      )}
     </div>
   );
 };
 
-export default ComicDetail;
+export default Details;

@@ -67,6 +67,13 @@ function rootReducer(state = InitialState, action) {
         loading: false,
       };
     }
+    case "CLOSE_ERROR": {
+      return {
+        ...state,
+        error: null,
+        loading: false,
+      };
+    }
     case "LOGIN":
       return {
         ...state,

@@ -45,7 +45,7 @@ const Comics = ({ comics }) => {
         <CircularProgress
           className="loader"
           color="inherit"
-          style={{ position: "absolute", top: "50%", left: "49%" }}
+          style={{ position: "absolute", top: "50%", left: "50%" }}
         />
       ) : (
         <>

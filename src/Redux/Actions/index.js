@@ -27,74 +27,79 @@ export const getComics = () => {
   };
 };
 
+// export const getComicDetail = (id) => {
+//   return async (dispatch) => {
+//     dispatch({ type: "LOADING" });
+//     try {
+//       const json = await axios.get(
+//         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
+//       );
+//       json.data.results && localStorage.setItem("detail", JSON.stringify(json));
+//       dispatch({
+//         type: "GET_COMIC_DETAIL",
+//         payload: json.data.results,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: "ERROR",
+//         payload: error.message,
+//       });
+//     }
+//   };
+// };
+
 export const getComicDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: "LOADING" });
     try {
-      const json = await axios.get(
+      const detail = [];
+      const infoCharacterComic = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
-      json.data.results && localStorage.setItem("detail", JSON.stringify(json));
-      dispatch({
-        type: "GET_COMIC_DETAIL",
-        payload: json.data.results,
-      });
+      const getImg = (comicImg) => {
+        return comicImg;
+      };
+      const getExtraInfo = async (extraInfo) => {
+        const extraInfoObj = extraInfo.map((info) => {
+          let obj = {
+            name: info.name,
+            id: info.id,
+            api_detail_url: info.api_detail_url,
+          };
+          return obj;
+        });
+        for (let i = 0; i < extraInfoObj.length; i++) {
+          let characterImages = await axios.get(
+            `https://cors-anywhere.herokuapp.com/${extraInfoObj[i].api_detail_url}?api_key=${API_KEY}&format=json`
+          );
+          extraInfoObj[i].icon_url =
+            characterImages.data.results.image.icon_url;
+        }
+        return extraInfoObj;
+      };
+      Promise.all([
+        getImg(infoCharacterComic.data.results.image.original_url),
+        getExtraInfo(infoCharacterComic.data.results.character_credits),
+        getExtraInfo(infoCharacterComic.data.results.location_credits),
+        getExtraInfo(infoCharacterComic.data.results.team_credits),
+        getExtraInfo(infoCharacterComic.data.results.concept_credits),
+      ]).then((result) =>
+        dispatch({
+          type: "GET_COMIC_DETAIL",
+          payload: result,
+        })
+      );
+      detail && localStorage.setItem("detail", JSON.stringify(detail));
+      console.log(detail);
     } catch (error) {
       dispatch({
         type: "ERROR",
         payload: error.message,
       });
+      console.log(error);
     }
   };
 };
-
-// export const getComicDetail = (id) => {
-//   return async (dispatch) => {
-//     dispatch({ type: "LOADING" });
-//     try {
-//       const detail = [];
-//       const infoCharacterComic = await axios.get(
-//         `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
-//       );
-//       const getImg = (comicImg) => {
-//         return comicImg;
-//       };
-//       const getExtraInfo = async (extraInfo) => {
-//         const extraInfoObj = extraInfo.map((info) => {
-//           let obj = {
-//             name: info.name,
-//             id: info.id,
-//             api_detail_url: info.api_detail_url,
-//           };
-//           return obj;
-//         });
-//         for (let i = 0; i < extraInfoObj.length; i++) {
-//           let characterImages = await axios.get(
-//             `https://cors-anywhere.herokuapp.com/${extraInfoObj[i].api_detail_url}?api_key=${API_KEY}&format=json`
-//           );
-//           extraInfoObj[i].icon_url =
-//             characterImages.data.results.image.icon_url;
-//         }
-//         return extraInfoObj;
-//       };
-//       Promise.all([
-//         getImg(infoCharacterComic.data.results.image.original_url),
-//         getExtraInfo(infoCharacterComic.data.results.character_credits),
-//         getExtraInfo(infoCharacterComic.data.results.location_credits),
-//         getExtraInfo(infoCharacterComic.data.results.team_credits),
-//         getExtraInfo(infoCharacterComic.data.results.concept_credits),
-//       ]).then((result) => detail.push(result));
-//       detail && localStorage.setItem("detail", JSON.stringify(detail));
-//       console.log(detail);
-//       dispatch({
-//         type: "GET_COMIC_DETAIL",
-//         payload: detail[0],
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
 
 export const setCurrentPage = (payload) => {
   try {
@@ -201,6 +206,18 @@ export const searchByName = (name) => {
         type: "ERROR",
         payload: error.message,
       });
+    }
+  };
+};
+
+export const closeError = () => {
+  return (dispatch) => {
+    try {
+      dispatch({
+        type: "CLOSE_ERROR",
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 };

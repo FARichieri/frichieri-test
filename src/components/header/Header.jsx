@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../Redux/Actions";
+import { closeError, logout } from "../../Redux/Actions";
 import FavoritesNav from "../favorites/favoritesNav/FavoritesNav";
 import "./header.scss";
 import swal from "sweetalert";
@@ -8,6 +8,9 @@ import errorImg from "../../images/error.png";
 
 const Header = () => {
   const error = useSelector((state) => state.error);
+  const currentUser = useSelector((state) => state.currentUser);
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
     swal({
       title: "Do you want to log out?",
@@ -25,8 +28,7 @@ const Header = () => {
       }
     });
   };
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.currentUser);
+
   return (
     <div className="header">
       <div className="nav">
@@ -45,8 +47,14 @@ const Header = () => {
         </div>
         {error && (
           <div className="errorMsg">
-            <span>{error}</span>
             <img className="errorImg" src={errorImg} alt="error" />{" "}
+            <span>{error}</span>
+            <button
+              onClick={() => dispatch(closeError())}
+              className="closeError"
+            >
+              x
+            </button>
           </div>
         )}
         <FavoritesNav />
