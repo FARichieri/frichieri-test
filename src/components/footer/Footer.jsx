@@ -5,7 +5,6 @@ const Footer = () => {
   return (
     <div className="footer reveal">
       <img className="logo" src={logo} alt="" />
-
       <a
         href="https://github.com/FARichieri/frichieri-test"
         target="_blank"
