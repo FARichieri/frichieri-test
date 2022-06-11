@@ -48,6 +48,7 @@ export const getSimpleDetails = (id) => {
   };
 };
 
+// This function fetch the All the details required (with each image of each subcategory.)
 export const getComicDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: "LOADING" });
@@ -96,11 +97,6 @@ export const getComicDetail = (id) => {
     }
   };
 };
-// To be tested
-// extraInfoObj.map(info => {
-//   let characterImages = await axios.get(`https://cors-anywhere.herokuapp.com/${info.api_detail_url}?api_key=${API_KEY}&format=json`)
-//   info.icon_url = characterImages.data.results.image.icon_url;
-// })
 
 export const setCurrentPage = (payload) => {
   try {

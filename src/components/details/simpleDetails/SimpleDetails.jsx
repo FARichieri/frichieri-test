@@ -13,7 +13,7 @@ const SimpleDetails = () => {
 
   useEffect(() => {
     dispatch(getSimpleDetails(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className="comicDetail">
@@ -33,7 +33,11 @@ const SimpleDetails = () => {
                     {detail.character_credits.map((credit) => (
                       <div className="subInfo" key={credit.id}>
                         <div className="infoMapped">
-                          <a href={credit.site_detail_url} target="_blank">
+                          <a
+                            href={credit.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <span>{credit.name}</span>
                           </a>
                         </div>
@@ -47,7 +51,11 @@ const SimpleDetails = () => {
                     {detail.team_credits.map((team) => (
                       <div className="subInfo" key={team.id}>
                         <div className="infoMapped">
-                          <a href={team.site_detail_url} target="_blank">
+                          <a
+                            href={team.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <span>{team.name}</span>
                           </a>
                         </div>
@@ -61,7 +69,11 @@ const SimpleDetails = () => {
                     {detail.location_credits.map((location) => (
                       <div className="subInfo" key={location.id}>
                         <div className="infoMapped">
-                          <a href={location.site_detail_url} target="_blank">
+                          <a
+                            href={location.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <span>{location.name}</span>
                           </a>
                         </div>
@@ -75,7 +87,11 @@ const SimpleDetails = () => {
                     {detail.concept_credits.map((concept) => (
                       <div className="subInfo" key={concept.id}>
                         <div className="infoMapped">
-                          <a href={concept.site_detail_url} target="_blank">
+                          <a
+                            href={concept.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <span>{concept.name}</span>
                           </a>
                         </div>

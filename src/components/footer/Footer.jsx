@@ -9,6 +9,7 @@ const Footer = () => {
         href="https://github.com/FARichieri/frichieri-test"
         target="_blank"
         className="github "
+        rel="noreferrer"
       >
         Copyright © 2022 ComicBook
       </a>

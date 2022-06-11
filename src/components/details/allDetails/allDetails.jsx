@@ -13,7 +13,7 @@ const AllDetails = () => {
 
   useEffect(() => {
     dispatch(getComicDetail(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className="comicDetail">
@@ -33,7 +33,11 @@ const AllDetails = () => {
                     {detail[1]?.map((credit) => (
                       <div className="subInfo" key={credit.id}>
                         <div className="infoMapped">
-                          <a href={credit.site_detail_url} target="_blank">
+                          <a
+                            href={credit.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
                               className="subImg"
                               src={credit.icon_url}
@@ -52,7 +56,11 @@ const AllDetails = () => {
                     {detail[2]?.map((team) => (
                       <div className="subInfo" key={team.id}>
                         <div className="infoMapped">
-                          <a href={team.site_detail_url} target="_blank">
+                          <a
+                            href={team.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
                               className="subImg"
                               src={team.icon_url}
@@ -71,7 +79,11 @@ const AllDetails = () => {
                     {detail[3]?.map((location) => (
                       <div className="subInfo" key={location.id}>
                         <div className="infoMapped">
-                          <a href={location.site_detail_url} target="_blank">
+                          <a
+                            href={location.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
                               className="subImg"
                               src={location.icon_url}
@@ -90,7 +102,11 @@ const AllDetails = () => {
                     {detail[4]?.map((concept) => (
                       <div className="subInfo" key={concept.id}>
                         <div className="infoMapped">
-                          <a href={concept.site_detail_url} target="_blank">
+                          <a
+                            href={concept.site_detail_url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
                               className="subImg"
                               src={concept.icon_url}
