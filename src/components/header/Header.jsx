@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { closeError, logout } from "../../Redux/Actions";
 import FavoritesNav from "../favorites/favoritesNav/FavoritesNav";
 import "./header.scss";
@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import errorImg from "../../images/error.png";
 
 const Header = () => {
+  const location = useLocation();
   const error = useSelector((state) => state.error);
   const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
@@ -45,6 +46,11 @@ const Header = () => {
             </Link>
           )}
         </div>
+        {location.pathname !== "/" && (
+          <Link to="/">
+            <button className="goHome">Home</button>
+          </Link>
+        )}
         {error && (
           <div className="errorMsg">
             <img className="errorImg" src={errorImg} alt="error" />{" "}
@@ -60,9 +66,7 @@ const Header = () => {
         <FavoritesNav />
       </div>
       <div className="title">
-        <Link to="/">
-          <span>ComicBook</span>
-        </Link>
+        <span>ComicBook</span>
       </div>
     </div>
   );

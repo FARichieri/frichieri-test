@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     z-index: 1;
@@ -26,8 +26,8 @@
       height: 30px;
       width: 30px;
       display: flex;
-      position: absolute;
-      left: 50px;
+      // position: absolute;
+      margin-left: 50px;
       align-items: center;
     }
 
@@ -62,9 +62,26 @@
     }
 
     .login:hover,
-    .logout:hover {
-      opacity: 1;
-      box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.197);
+    .logout:hover,
+    .goHome:hover {
+      opacity: .8;
+      box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.584);
+    }
+
+    .goHome {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      border: 1px solid yellow;
+      background-color: yellow;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: .5;
+      transition: .3s;
     }
 
     .errorMsg {
@@ -126,13 +143,16 @@
   .title span {
     transition: 0.3s;
   }
+}
 
-  .title span:hover {
-    color: rgb(179, 17, 17);
-  }
+@media screen and (max-width: 500px) {
+  .header {
+    .nav {
+      .logBtns {
+        margin-left: 25px;
+      }
+    }
 
-  a {
-    text-decoration: none;
-    color: inherit;
+
   }
 }

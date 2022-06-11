@@ -1,7 +1,7 @@
 .favContainer {
   display: flex;
   position: relative;
-  margin-right: 60px;
+  margin-right: 50px;
 
   .favCounter {
     position: absolute;
@@ -27,6 +27,7 @@
     transition: 0.5s ease;
   }
 }
+
 .favContainer:hover .favIcon {
   transform: scale(1.2);
 }

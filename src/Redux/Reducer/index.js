@@ -62,9 +62,12 @@ function rootReducer(state = InitialState, action) {
       };
     }
     case "ERROR": {
+      let error = action.payload.response.statusText
+        ? action.payload.message + ": " + action.payload.response.statusText
+        : action.payload.message;
       return {
         ...state,
-        error: action.payload,
+        error: error,
         loading: false,
       };
     }

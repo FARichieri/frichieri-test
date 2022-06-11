@@ -4,32 +4,12 @@ import { db } from "../../firebase";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-(function () {
-  var cors_api_host = "cors-anywhere.herokuapp.com";
-  var cors_api_url = "https://" + cors_api_host + "/";
-  var slice = [].slice;
-  var origin = window.location.protocol + "//" + window.location.host;
-  var open = XMLHttpRequest.prototype.open;
-  XMLHttpRequest.prototype.open = function () {
-    var args = slice.call(arguments);
-    var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-    if (
-      targetOrigin &&
-      targetOrigin[0].toLowerCase() !== origin &&
-      targetOrigin[1] !== cors_api_host
-    ) {
-      args[1] = cors_api_url + args[1];
-    }
-    return open.apply(this, args);
-  };
-})();
-
 export const getComics = () => {
   return async (dispatch) => {
     dispatch({ type: "LOADING" });
     try {
       const json = await axios.get(
-        `https://corsanywhere.herokuapp.com/https://comicvine.gamespot.com/api/issues/?api_key=${API_KEY}&format=json`
+        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issues/?api_key=${API_KEY}&format=json`
       );
       json.data.results && localStorage.setItem("comics", JSON.stringify(json));
 
@@ -38,10 +18,9 @@ export const getComics = () => {
         payload: json.data.results,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -53,7 +32,7 @@ export const getSimpleDetails = (id) => {
     dispatch({ type: "LOADING" });
     try {
       const json = await axios.get(
-        `https://corsanywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
+        `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/issue/4000-${id}/?api_key=${API_KEY}&format=json`
       );
       json.data.results && localStorage.setItem("detail", JSON.stringify(json));
       dispatch({
@@ -63,7 +42,7 @@ export const getSimpleDetails = (id) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -100,8 +79,8 @@ export const getComicDetail = (id) => {
       Promise.all([
         getImg(infoCharacterComic.data.results.image.original_url),
         getExtraInfo(infoCharacterComic.data.results.character_credits),
-        getExtraInfo(infoCharacterComic.data.results.location_credits),
         getExtraInfo(infoCharacterComic.data.results.team_credits),
+        getExtraInfo(infoCharacterComic.data.results.location_credits),
         getExtraInfo(infoCharacterComic.data.results.concept_credits),
       ]).then((result) =>
         dispatch({
@@ -112,9 +91,8 @@ export const getComicDetail = (id) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
-      console.log(error);
     }
   };
 };
@@ -145,7 +123,7 @@ export const addFavorite = (id) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -161,7 +139,7 @@ export const deleteFavorite = (id) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -180,7 +158,7 @@ export const getFavorites = (id) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -196,7 +174,7 @@ export const login = (user) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -211,7 +189,7 @@ export const logout = () => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
@@ -227,7 +205,7 @@ export const searchByName = (name) => {
     } catch (error) {
       dispatch({
         type: "ERROR",
-        payload: error.message,
+        payload: error,
       });
     }
   };
