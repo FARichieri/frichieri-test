@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import "./simpleDetails.scss";
 import { CircularProgress } from "@mui/material";
-import { getComicDetail, getSimpleDetails } from "../../../Redux/Actions";
+import { getSimpleDetails } from "../../../Redux/Actions";
+import "./simpleDetails.scss";
 
 const SimpleDetails = () => {
   const { id } = useParams();

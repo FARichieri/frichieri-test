@@ -1,7 +1,7 @@
 import "./favoritesNav.scss";
 import favIcon from "../../../images/fav.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getFavorites } from "../../../Redux/Actions";
 
@@ -12,7 +12,7 @@ const FavoritesNav = () => {
 
   useEffect(() => {
     currentUser && dispatch(getFavorites(currentUser.uid));
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
   return (
     <div className="favoritesNav">

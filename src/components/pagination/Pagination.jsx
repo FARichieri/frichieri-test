@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import "./pagination.scss";
 import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../Redux/Actions";
+import "./pagination.scss";
 
 function PaginationC({ totalPages }) {
   const location = useLocation();

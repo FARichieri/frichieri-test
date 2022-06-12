@@ -1,5 +1,5 @@
 const InitialState = {
-  comics: JSON.parse(localStorage.getItem("comics"))?.data.results || [],
+  comics: JSON.parse(localStorage.getItem("comics"))?.data.results || [], // To load data if the Api is bloqued for "too many requests"
   comicsFiltered: [],
   comicDetail: [],
   favorites: [],

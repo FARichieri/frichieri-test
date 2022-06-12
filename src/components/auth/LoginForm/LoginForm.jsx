@@ -1,15 +1,12 @@
 import { useState } from "react";
-import "./loginForm.scss";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getFavorites, login } from "../../../Redux/Actions";
-import swal from "sweetalert";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../../firebase";
 import { doc, setDoc } from "firebase/firestore";
+import swal from "sweetalert";
+import "./loginForm.scss";
 
 const LoginForm = () => {
   const [error, setError] = useState(false);
